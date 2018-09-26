@@ -1,0 +1,571 @@
+\documentclass[UTF8,cap,nofonts,openany,twoside]{ctexbook}
+\usepackage{refcount,lastpage}
+\usepackage[paper=a4paper,hmargin={3cm,2cm},vmargin={2cm,2cm},
+marginparsep=0.5cm,hoffset=0cm,voffset=0cm,footnotesep=0.5cm,
+headsep=0.5cm,twoside]{geometry}
+\setmainfont{Times New Roman} % could be changed to "TeXGyrePagella"or "Times New Roman PS Std"
+  \setsansfont{Arial}
+  \setmonofont{Consolas}
+  \setCJKmainfont[BoldFont={Adobe Heiti Std},ItalicFont={Adobe Kaiti Std}]{Adobe Song Std}
+  \setCJKsansfont{Adobe Heiti Std}
+  \setCJKmonofont{Adobe Kaiti Std}
+  \setCJKfamilyfont{song}{Adobe Song Std}
+  \setCJKfamilyfont{kai}{Adobe Kaiti Std}
+\newcommand{\song}{\CJKfamily{song}}    % 宋体
+\newcommand{\kai}{\CJKfamily{kai}}      % 楷体
+\newcommand{\hei}{\CJKfamily{hei}}      % 黑体
+\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}     % 初号
+\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont} % 小初号
+\newcommand{\yichu}{\fontsize{32pt}{\baselineskip}\selectfont}      % 一初
+\newcommand{\yihao}{\fontsize{28pt}{\baselineskip}\selectfont}      % 一号
+\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont}      % 二号
+\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}  % 小二号
+\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont}  % 三号
+\newcommand{\xiaosanhao}{\fontsize{15pt}{\baselineskip}\selectfont} % 小三号
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}      % 四号
+\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}  % 小四号
+\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}    % 五号
+\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}   % 小五号
+\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}  % 六号
+\newcommand{\xiaoliuhao}{\fontsize{6.5pt}{\baselineskip}\selectfont}% 小六号
+\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}    % 七号
+
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage{xparse}
+
+\newcounter{mpage}
+\setcounter{mpage}{1}
+\def\formatDigit#1{%
+  \tikz\node[draw, circle, minimum size=0.5mm]{#1};
+}
+
+\ExplSyntaxOn
+% generate variant to control expansion of parameter
+\cs_generate_variant:Nn \tl_map_function:nN { xN }
+
+\renewcommand{\thempage}{%
+  \tl_map_function:xN { \the\value{mpage} } \formatDigit\stepcounter{mpage}
+}
+\ExplSyntaxOff
+
+\ExplSyntaxOn
+\NewDocumentCommand{\definecasesmacro}{O{str}mmm}
+ {
+  \cs_new:Npn #2
+   {
+    \int_case:nnF { \value{#1} } { #3 } { #4 }
+   }
+ }
+
+\ExplSyntaxOff
+
+\newcounter{str}
+\definecasesmacro{\solidot}
+  {
+   {0}{Guilty consciences make men cowards.}
+   {1}{做贼心虚。}
+   {2}{Honesty is the best policy.}
+   {3}{做人诚信为本。}
+   {4}{Come what may, heaven won't fall.}
+   {5}{做你的吧，天塌不下来。}
+   {6}{It is too late to grieve when the chance is past.}
+   {7}{坐失良机，后悔已迟。}
+   {8}{God helps those who help themselves.}
+   {9}{自助者天助。}
+   {10}{Confidence in yourself is the first step on the road to success.}
+   {11}{自信是走向成功的第一步。}
+   {12}{Heaven never helps the man who will not act.}
+   {13}{自己不动，叫天何用。}
+   {14}{He is not laughed at that laughs at himself first.}
+   {15}{自嘲者不会让人见笑。}
+   {16}{Give a dog a bad name and hang him.}
+   {17}{众口铄金，积毁销骨。}
+   {18}{It is hard to please all.}
+   {19}{众口难调。}
+   {20}{As a man sows, so he shall reap.}
+   {21}{种瓜得瓜，种豆得豆。}
+   {22}{Content is better than riches.}
+   {23}{知足者常乐.}
+   {24}{A faithful friend is hard to find.}
+   {25}{知音难觅。}
+   {26}{He is lifeless that is faultless.}
+   {27}{只有死人才不犯错误。}
+   {28}{All work and no play makes Jack a dull boy.}
+   {29}{只会用功不玩耍，聪明孩子也变傻。}
+   {30}{It is easier to get money than to keep it.}
+   {31}{挣钱容易攒钱难。}
+   {32}{He is not fit to command others that cannot command himself.}
+   {33}{正人先正己。}
+   {34}{A wise head makes a close mouth.}
+   {35}{真人不露相，露相非真人。}
+   {36}{Choose an author as you choose a friend.}
+   {37}{择书如择友。}
+   {38}{Early to bed and early to rise makes a man healthy, wealthy and wise.}
+   {39}{早睡早起身体好。}
+   {40}{Friends must part.}
+   {41}{再好的朋友也有分手的时候。}
+   {42}{Far water does not put out near fire.}
+   {43}{远水救不了近火。}
+   {44}{Fool's haste is no speed.}
+   {45}{欲速则不达。}
+   {46}{An ounce of prevention is worth a pound of cure.}
+   {47}{预防为主，治疗为辅。}
+   {48}{Doing is better than saying.}
+   {49}{与其挂在嘴上，不如落实在行动上。}
+   {50}{He is a fool that forgets himself.}
+   {51}{愚者忘乎所以。}
+   {52}{Fools learn nothing from wise men, but wise men learn much from fools.}
+   {53}{愚者不学无术，智者不耻下问。}
+   {54}{Custom makes all things easy.}
+   {55}{有个好习惯，事事皆不难。}
+   {56}{Great minds think alike.}
+   {57}{英雄所见略同。}
+   {58}{Great men have great faults.}
+   {59}{英雄犯大错误。}
+   {60}{He sets the fox to keep the geese.}
+   {61}{引狼入室。}
+   {62}{An eye for an eye and a tooth for a tooth.}
+   {63}{以眼还眼，以牙还牙。}
+   {64}{Good for good is natural, good for evil is manly.}
+   {65}{以德报德是常理，以德报怨大丈夫。}
+   {66}{A bad thing never dies.}
+   {67}{遗臭万年。}
+   {68}{A little knowledge is a dangerous thing.}
+   {69}{一知半解，自欺欺人。}
+   {70}{Cannot see the wood for the trees.}
+   {71}{一叶障目，不见泰山。}
+   {72}{A word spoken is past recalling.}
+   {73}{一言既出，驷马难追。}
+   {74}{A man cannot spin and reel at the same time.}
+   {75}{一心不能二用。}
+   {76}{An apple a day keeps the doctor away.}
+   {77}{一天一苹果，医生远离我。}
+   {78}{An hour in the morning is worth two in the evening.}
+   {79}{一日之计在于晨。}
+   {80}{A bird in the hand is worth than two in the bush.}
+   {81}{一鸟在手胜过双鸟在林。}
+   {82}{A year's plan starts with spring.}
+   {83}{一年之计在于春。}
+   {84}{Hasty love, soon cold.}
+   {85}{一见钟情难维久。}
+   {86}{A single flower does not make a spring.}
+   {87}{一花独放不是春百花齐放春满园。}
+   {88}{A man without money is no man at all.}
+   {89}{一分钱难倒英雄汉。}
+   {90}{Faults are thick where love is thin.}
+   {91}{一朝情意淡，样样不顺眼。}
+   {92}{A good book is the best of friends, the same today and forever.}
+   {93}{一本好书，相伴一生。}
+   {94}{If you want knowledge, you must toil for it.}
+   {95}{要想求知，就得吃苦。}
+   {96}{Happy is he who owes nothing.}
+   {97}{要想活得痛快，身上不能背债。}
+   {98}{Far from eye, far from heart.}
+   {99}{眼不见，心不烦。}
+   {100}{Creep before you walk.}
+   {101}{循序渐进。}
+   {102}{Blood is thicker than water.}
+   {103}{血浓于水。}
+   {104}{Complacency is the enemy of study.}
+   {105}{学习的敌人是自己的满足。}
+   {106}{A friend is never known till a man has need.}
+   {107}{需要之时方知友。}
+   {108}{Fools grow without watering.}
+   {109}{朽木不可雕。}
+   {110}{A new broom sweeps clean.}
+   {111}{新官上任三把火。}
+   {112}{Greedy folks have long arms.}
+   {113}{心贪手长。}
+   {114}{A merry heart goes all the way.}
+   {115}{心旷神怡，事事顺利。}
+   {116}{Habit cures habit.}
+   {117}{心病还需心药医。}
+   {118}{Caution is the parent of safety.}
+   {119}{小心驶得万年船。}
+   {120}{A stitch in time saves nine.}
+   {121}{小洞不补，大洞吃苦。}
+   {122}{He who makes no mistakes makes nothing.}
+   {123}{想不犯错误，就一事无成。}
+   {124}{First think and then speak.}
+   {125}{先想后说。}
+   {126}{First come, first served.}
+   {127}{先来后到。}
+   {128}{A joke never gains an enemy but loses a friend.}
+   {129}{戏谑不能化敌为友，只能使人失去朋友。}
+   {130}{Custom is a second nature.}
+   {131}{习惯是后天养成的。}
+   {132}{Happy is the man who learns from the misfortunes of others.}
+   {133}{吸取他人教训，自己才会走运。}
+   {134}{Birds of a feather flock together.}
+   {135}{物以类聚，人以群分。}
+   {136}{Better to ask the way than go astray.}
+   {137}{问路总比迷路好。}
+   {138}{Great hopes make great man.}
+   {139}{伟大的抱负造就伟大的人物。}
+   {140}{It is the first step that costs troublesome.}
+   {141}{万事开头难。}
+   {142}{Be swift to hear, slow to speak.}
+   {143}{听宜敏捷，言宜缓行。}
+   {144}{It is the unforeseen that always happens.}
+   {145}{天有不测风云，人有旦夕祸福。}
+   {146}{All good things come to an end.}
+   {147}{天下没有不散的筵席。}
+   {148}{Justice has long arms.}
+   {149}{天网恢恢，疏而不漏。}
+   {150}{Genius is nothing but labor and diligence.}
+   {151}{天才不过是勤奋而已。}
+   {152}{A fair death honors the whole life.}
+   {153}{死得其所，流芳百世。}
+   {154}{Example is better then percept.}
+   {155}{说一遍，不如做一遍。}
+   {156}{A liar is not believed when he speaks the truth.}
+   {157}{说谎者即使讲真话也没人相信。}
+   {158}{Easier said than done.}
+   {159}{说得容易，做得难。}
+  }
+  {再多添加一些名言吧}
+
+\newcommand{\solidotcnt}{{\solidot\stepcounter{str}}}
+
+\definecolor{lightblue}{rgb}{0.00390625, 0.43359375,0.77734375}
+ \definecolor{darkgrey}{cmyk}{0,0,0,0.63}%{0,0,0,63}
+ \definecolor{lightgrey}{cmyk}{0,0,0,0.32}%{0,0,0,32}
+\makeatletter
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[RO]{%
+{\@tikzhead{\solidotcnt}}
+  }
+  \fancyhead[LE]{%
+{\@tikzhead{\solidotcnt}}
+  }
+\fancyfoot[LO,RE]{\textsc{\color{blue!60!black}UESTC} { \textsc{831 {\color{red}N}o\color{blue!60!black}tes}} $\big\vert$ Tsingpo Lee 倾情制作}
+\fancyfoot[RO,LE]{\thempage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\fancypagestyle{headings}{%
+  \fancyhf{}
+  \fancyhead[RO]{%
+{\@tikzhead{\solidotcnt}}
+  }
+  \fancyhead[LE]{%
+{\@tikzhead{\solidotcnt}}
+  }
+\fancyfoot[LO,RE]{\textsc{\color{blue!60!black}UESTC} { \textsc{831 {\color{red}N}o\color{blue!60!black}tes}} $\big\vert$ Tsingpo Lee 倾情制作}
+\fancyfoot[RO,LE]{\thempage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\fancypagestyle{headcover}{%
+  \fancyhf{}
+  \fancyhead[RO]{%
+\@tikzhead{\leftmark}
+  }
+  \fancyhead[LE]{%
+{\@tikzhead{\leftmark}}
+  }
+\fancyfoot[LO,RE]{}
+  \fancyfoot[RO,LE]{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\newlength\pagenumwidth
+\settowidth{\pagenumwidth}{199}
+\tikzset{pagefooter/.style={
+anchor=base,font=\bfseries\scshape\small,
+text=black,text centered,
+text depth=0.5mm,text width=2\pagenumwidth}}
+\newcommand*{\@tikzhead}[1]%
+{%
+  \begin{tikzpicture}[remember picture,overlay]%
+    \node[yshift=-1.3cm] at (current page.north west)%
+    {%
+      \begin{tikzpicture}[remember picture, overlay]%
+      \draw[fill=lightgrey!40,line width=0mm,draw=none](0,0) rectangle (\paperwidth,13mm);%
+        \node[anchor=east,xshift=.52\paperwidth,yshift=3.5mm,rectangle,line width=0mm,draw=none]%
+              {\begin{minipage}{9cm}\flushleft{{#1}}\end{minipage}};%
+        \node[anchor=east,xshift=.92\paperwidth,yshift=3.5mm,rectangle,line width=0mm,draw=none]%
+              {{\color{black}\LaTeX{Studio}工作室}};
+      \end{tikzpicture}%
+    };%
+  \end{tikzpicture}%
+}%
+\pagestyle{headings}
+\newcommand*{\Headline}[1]{\@mkboth{#1}{#1}}%
+\newcommand{\headfont}{\normalfont\mdseries\scshape}
+\makeatother
+\begin{document}
+\noindent copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text
+
+\chapter{卫青亦人奴}
+
+西汉时期，驸马平阳侯家里有奴婢名叫“卫媪”，说那奴婢生的“美貌如花”，已经嫁为人妇的她已为夫家生下了一男三女四个孩子，第三个女儿就是后来汉武帝刘彻的第二位皇后“卫子夫”。
+
+那卫子夫的母亲因为生的美貌，虽然已经是生了四个孩子的“半老徐娘”，但是仍然“风韵犹存”。
+
+说某天平阳侯家来了一位名叫“郑季”的县吏，是来帮平阳侯做事的。那郑季本就是个好色之徒，不好好做事，而在平阳侯家瞎溜达。这一溜达还真的有发现唉！
+
+他就发现了卫子夫的母亲，立刻被这个“资深美女”给吸引住了。于是找各种机会去接近这个“大美女”，那“卫媪”本就是个奴婢，这忽然被个“县吏大人”如此的爱慕，也是真的“受宠若惊”啊！
+
+于是二人就私下里偷偷“约会”，于是就有了中国历史上赫赫有名的大将“卫青”。由于是私生子，卫青只能随母姓。卫青的母亲又是一个卑贱的奴婢，家境也实在是非常的贫寒，无奈之下，只好将卫青送于他的生父郑季抚养。
+
+那郑季本就是贪恋卫媪一时的美色，还真没把这个卑贱的奴婢放在心上。一看到把孩子送来了，他很勉强的接受了。但是对卫青却非常的歧视，就只让他放羊，地位连家里的佣人都不如，所以卫青在郑家只是奴隶的身份。
+
+郑季的妻妾们生的孩子都欺负年幼的卫青，从没有一个人把他当自己的兄弟姐妹。可怜小小的卫青，离开了母亲已经够无助的了，亲生父亲对他又是如此的无情。
+
+在屈辱、孤寂、无助中长大的卫青，却学会了一样“本事”，那就是“忍耐”。他的这份忍耐的精神也给他以后的发展起到了至关重要的作用。
+
+在卫青稍长大点以后，他无法再忍受这样被亲生父亲当奴隶的生活，他又回到了母亲的身边。虽然生活依然是很穷苦，但是和母亲以及姐姐卫子夫在一起生活，让饱受折磨的卫青终于感受到温暖。
+
+\chapter{窘辱何须讶}
+
+卫青成年后，随母亲在驸马平阳侯曹寿家做了一名骑马随从，专门保护曹寿的妻子平阳公主。
+
+卫青的姐姐卫子夫则成了平阳侯家的歌妓，那卫子夫本就随母亲长的非常的漂亮，再加上当歌妓必须接受各种专业训练，使得卫子夫更加的出挑！
+
+汉武帝刘彻有一年去灞上扫墓归来，路过平阳侯家，平阳侯夫妇热情招待，献歌献舞。在这个献舞的过程中，刘彻就被婀娜多姿的卫子夫所吸引，于是当晚就宠幸了卫子夫。
+
+不久卫子夫即被汉武帝接进宫中，卫青也沾了姐姐的光被安排在建章宫当差。
+
+卫子夫被接进宫中后，就被刘彻忘到脑后了，坐了一年多的冷板凳。一年多以后，刘彻又忽然想起还有这么个美人在宫里呢，于是又开始宠幸卫子夫，不久卫子夫即怀孕了。
+
+刘彻的皇后，“金屋藏娇”的女主角---陈阿娇皇后，在得知卫子夫怀孕后，是又嫉妒又害怕，怕那卫子夫生下男婴影响自己的地位，因为陈阿娇一直未有生育孩子。
+
+于是陈皇后派人抓捕了卫青，想杀掉卫青，以此刺激卫子夫让其流产。
+
+卫青的好友公孙敖得知此消息，焦急万分，立刻召集部下劫了大牢，卫青这才保住了一条命。
+
+刘彻知道这件事后，非常的震怒，立刻升卫子夫做了“夫人”，又任命卫青为建章监、侍中。卫子夫也没有辜负皇上的期望，为刘彻生下了一位太子。
+
+卫青成为建章监以后，随侍在皇帝身边，深得皇帝信任，后又被升至太中大夫。
+
+秋风劲弓弝
+
+由于从小在父亲家当奴隶的人生经历，养成了卫青隐忍内敛的性格，不张不傲，做任何事都很有分寸，因而深得皇帝的喜爱。不久又升他为车骑将军，卫青的大将生涯从此开始。
+
+这一年匈奴来犯，彪悍的匈奴骑兵来势凶猛。刘彻即派卫青带领一支部队，外加另外的三只部队同时出发，四面夹击来攻破匈奴的侵略。
+
+但是其余三只部队均惨败而回，只有卫青带领的部队打了大胜仗！
+
+为何呢？因为卫青善于以战养战，用兵敢于深入，而且将号严明；对将士爱护有加，对同僚大度有礼；位极人臣而不立私威。任何事情都是严格的要求自己，以身作则。故而深得官兵们的爱戴，所有的官兵都自愿的为他“赴汤蹈火”！
+
+卫青的姐姐卫子夫生了儿子后，深得刘彻的宠爱，刘彻废掉陈阿娇的后位改立卫子夫做了皇后。
+
+在这时候，卫青又不断的驱逐匈奴为大汉立下奇功。并且俘虏了匈奴士兵数千人，还捕获了敌人100多万头牲畜，夺回了大片的土地！
+
+皇帝高兴万分，当即将夺回的土地全部赏赐给了卫青，并且封卫青为“长平侯”。
+
+“平阳公主”就是卫青当年在平阳侯家给当护卫随从的那位“公主”啦。在这一年，平阳公主失去了丈夫曹寿，她决定再嫁。
+
+于是很多人都建议平阳公主嫁给卫青，但是平阳公主嫌弃卫青奴隶出身，还做过自己的随从“辱没”了自己的公主身份。
+
+另外一部分人就劝说平阳公主，说卫青现在身份尊贵，而且人才出众，是最好的人选了。考虑再三的公主最后还是同意了。
+
+汉武帝也希望看到自己的姐姐生活幸福，于是下诏书命令卫青娶平阳公主为妻。
+
+一代名将卫青就这样当上了驸马，变成了汉武帝刘彻的“姐夫”。
+\newpage
+但是其余三只部队均惨败而回，只有卫青带领的部队打了大胜仗！
+
+为何呢？因为卫青善于以战养战，用兵敢于深入，而且将号严明；对将士爱护有加，对同僚大度有礼；位极人臣而不立私威。任何事情都是严格的要求自己，以身作则。故而深得官兵们的爱戴，所有的官兵都自愿的为他“赴汤蹈火”！
+
+卫青的姐姐卫子夫生了儿子后，深得刘彻的宠爱，刘彻废掉陈阿娇的后位改立卫子夫做了皇后。
+
+在这时候，卫青又不断的驱逐匈奴为大汉立下奇功。并且俘虏了匈奴士兵数千人，还捕获了敌人100多万头牲畜，夺回了大片的土地！
+
+皇帝高兴万分，当即将夺回的土地全部赏赐给了卫青，并且封卫青为“长平侯”。
+
+“平阳公主”就是卫青当年在平阳侯家给当护卫随从的那位“公主”啦。在这一年，平阳公主失去了丈夫曹寿，她决定再嫁。
+
+于是很多人都建议平阳公主嫁给卫青，但是平阳公主嫌弃卫青奴隶出身，还做过自己的随从“辱没”了自己的公主身份。
+
+另外一部分人就劝说平阳公主，说卫青现在身份尊贵，而且人才出众，是最好的人选了。考虑再三的公主最后还是同意了。
+
+汉武帝也希望看到自己的姐姐生活幸福，于是下诏书命令卫青娶平阳公主为妻。
+
+一代名将卫青就这样当上了驸马，变成了汉武帝刘彻的“姐夫”。
+\setcounter{page}{10}
+\noindent copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text
+
+\chapter{卫青亦人奴}
+
+西汉时期，驸马平阳侯家里有奴婢名叫“卫媪”，说那奴婢生的“美貌如花”，已经嫁为人妇的她已为夫家生下了一男三女四个孩子，第三个女儿就是后来汉武帝刘彻的第二位皇后“卫子夫”。
+
+那卫子夫的母亲因为生的美貌，虽然已经是生了四个孩子的“半老徐娘”，但是仍然“风韵犹存”。
+
+说某天平阳侯家来了一位名叫“郑季”的县吏，是来帮平阳侯做事的。那郑季本就是个好色之徒，不好好做事，而在平阳侯家瞎溜达。这一溜达还真的有发现唉！
+
+他就发现了卫子夫的母亲，立刻被这个“资深美女”给吸引住了。于是找各种机会去接近这个“大美女”，那“卫媪”本就是个奴婢，这忽然被个“县吏大人”如此的爱慕，也是真的“受宠若惊”啊！
+
+于是二人就私下里偷偷“约会”，于是就有了中国历史上赫赫有名的大将“卫青”。由于是私生子，卫青只能随母姓。卫青的母亲又是一个卑贱的奴婢，家境也实在是非常的贫寒，无奈之下，只好将卫青送于他的生父郑季抚养。
+
+那郑季本就是贪恋卫媪一时的美色，还真没把这个卑贱的奴婢放在心上。一看到把孩子送来了，他很勉强的接受了。但是对卫青却非常的歧视，就只让他放羊，地位连家里的佣人都不如，所以卫青在郑家只是奴隶的身份。
+
+郑季的妻妾们生的孩子都欺负年幼的卫青，从没有一个人把他当自己的兄弟姐妹。可怜小小的卫青，离开了母亲已经够无助的了，亲生父亲对他又是如此的无情。
+
+在屈辱、孤寂、无助中长大的卫青，却学会了一样“本事”，那就是“忍耐”。他的这份忍耐的精神也给他以后的发展起到了至关重要的作用。
+
+在卫青稍长大点以后，他无法再忍受这样被亲生父亲当奴隶的生活，他又回到了母亲的身边。虽然生活依然是很穷苦，但是和母亲以及姐姐卫子夫在一起生活，让饱受折磨的卫青终于感受到温暖。
+
+\chapter{窘辱何须讶}
+
+卫青成年后，随母亲在驸马平阳侯曹寿家做了一名骑马随从，专门保护曹寿的妻子平阳公主。
+
+卫青的姐姐卫子夫则成了平阳侯家的歌妓，那卫子夫本就随母亲长的非常的漂亮，再加上当歌妓必须接受各种专业训练，使得卫子夫更加的出挑！
+
+汉武帝刘彻有一年去灞上扫墓归来，路过平阳侯家，平阳侯夫妇热情招待，献歌献舞。在这个献舞的过程中，刘彻就被婀娜多姿的卫子夫所吸引，于是当晚就宠幸了卫子夫。
+
+不久卫子夫即被汉武帝接进宫中，卫青也沾了姐姐的光被安排在建章宫当差。
+
+卫子夫被接进宫中后，就被刘彻忘到脑后了，坐了一年多的冷板凳。一年多以后，刘彻又忽然想起还有这么个美人在宫里呢，于是又开始宠幸卫子夫，不久卫子夫即怀孕了。
+
+刘彻的皇后，“金屋藏娇”的女主角---陈阿娇皇后，在得知卫子夫怀孕后，是又嫉妒又害怕，怕那卫子夫生下男婴影响自己的地位，因为陈阿娇一直未有生育孩子。
+
+于是陈皇后派人抓捕了卫青，想杀掉卫青，以此刺激卫子夫让其流产。
+
+卫青的好友公孙敖得知此消息，焦急万分，立刻召集部下劫了大牢，卫青这才保住了一条命。
+
+刘彻知道这件事后，非常的震怒，立刻升卫子夫做了“夫人”，又任命卫青为建章监、侍中。卫子夫也没有辜负皇上的期望，为刘彻生下了一位太子。
+
+卫青成为建章监以后，随侍在皇帝身边，深得皇帝信任，后又被升至太中大夫。
+
+秋风劲弓弝
+
+由于从小在父亲家当奴隶的人生经历，养成了卫青隐忍内敛的性格，不张不傲，做任何事都很有分寸，因而深得皇帝的喜爱。不久又升他为车骑将军，卫青的大将生涯从此开始。
+
+这一年匈奴来犯，彪悍的匈奴骑兵来势凶猛。刘彻即派卫青带领一支部队，外加另外的三只部队同时出发，四面夹击来攻破匈奴的侵略。
+
+但是其余三只部队均惨败而回，只有卫青带领的部队打了大胜仗！
+
+为何呢？因为卫青善于以战养战，用兵敢于深入，而且将号严明；对将士爱护有加，对同僚大度有礼；位极人臣而不立私威。任何事情都是严格的要求自己，以身作则。故而深得官兵们的爱戴，所有的官兵都自愿的为他“赴汤蹈火”！
+
+卫青的姐姐卫子夫生了儿子后，深得刘彻的宠爱，刘彻废掉陈阿娇的后位改立卫子夫做了皇后。
+
+在这时候，卫青又不断的驱逐匈奴为大汉立下奇功。并且俘虏了匈奴士兵数千人，还捕获了敌人100多万头牲畜，夺回了大片的土地！
+
+皇帝高兴万分，当即将夺回的土地全部赏赐给了卫青，并且封卫青为“长平侯”。
+
+“平阳公主”就是卫青当年在平阳侯家给当护卫随从的那位“公主”啦。在这一年，平阳公主失去了丈夫曹寿，她决定再嫁。
+
+于是很多人都建议平阳公主嫁给卫青，但是平阳公主嫌弃卫青奴隶出身，还做过自己的随从“辱没”了自己的公主身份。
+
+另外一部分人就劝说平阳公主，说卫青现在身份尊贵，而且人才出众，是最好的人选了。考虑再三的公主最后还是同意了。
+
+汉武帝也希望看到自己的姐姐生活幸福，于是下诏书命令卫青娶平阳公主为妻。
+
+一代名将卫青就这样当上了驸马，变成了汉武帝刘彻的“姐夫”。
+\newpage
+但是其余三只部队均惨败而回，只有卫青带领的部队打了大胜仗！
+
+为何呢？因为卫青善于以战养战，用兵敢于深入，而且将号严明；对将士爱护有加，对同僚大度有礼；位极人臣而不立私威。任何事情都是严格的要求自己，以身作则。故而深得官兵们的爱戴，所有的官兵都自愿的为他“赴汤蹈火”！
+
+卫青的姐姐卫子夫生了儿子后，深得刘彻的宠爱，刘彻废掉陈阿娇的后位改立卫子夫做了皇后。
+
+在这时候，卫青又不断的驱逐匈奴为大汉立下奇功。并且俘虏了匈奴士兵数千人，还捕获了敌人100多万头牲畜，夺回了大片的土地！
+
+皇帝高兴万分，当即将夺回的土地全部赏赐给了卫青，并且封卫青为“长平侯”。
+
+“平阳公主”就是卫青当年在平阳侯家给当护卫随从的那位“公主”啦。在这一年，平阳公主失去了丈夫曹寿，她决定再嫁。
+
+于是很多人都建议平阳公主嫁给卫青，但是平阳公主嫌弃卫青奴隶出身，还做过自己的随从“辱没”了自己的公主身份。
+
+另外一部分人就劝说平阳公主，说卫青现在身份尊贵，而且人才出众，是最好的人选了。考虑再三的公主最后还是同意了。
+
+汉武帝也希望看到自己的姐姐生活幸福，于是下诏书命令卫青娶平阳公主为妻。
+
+一代名将卫青就这样当上了驸马，变成了汉武帝刘彻的“姐夫”。
+\setcounter{page}{100}
+\noindent copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text copious text
+
+\chapter{卫青亦人奴}
+
+西汉时期，驸马平阳侯家里有奴婢名叫“卫媪”，说那奴婢生的“美貌如花”，已经嫁为人妇的她已为夫家生下了一男三女四个孩子，第三个女儿就是后来汉武帝刘彻的第二位皇后“卫子夫”。
+
+那卫子夫的母亲因为生的美貌，虽然已经是生了四个孩子的“半老徐娘”，但是仍然“风韵犹存”。
+
+说某天平阳侯家来了一位名叫“郑季”的县吏，是来帮平阳侯做事的。那郑季本就是个好色之徒，不好好做事，而在平阳侯家瞎溜达。这一溜达还真的有发现唉！
+
+他就发现了卫子夫的母亲，立刻被这个“资深美女”给吸引住了。于是找各种机会去接近这个“大美女”，那“卫媪”本就是个奴婢，这忽然被个“县吏大人”如此的爱慕，也是真的“受宠若惊”啊！
+
+于是二人就私下里偷偷“约会”，于是就有了中国历史上赫赫有名的大将“卫青”。由于是私生子，卫青只能随母姓。卫青的母亲又是一个卑贱的奴婢，家境也实在是非常的贫寒，无奈之下，只好将卫青送于他的生父郑季抚养。
+
+那郑季本就是贪恋卫媪一时的美色，还真没把这个卑贱的奴婢放在心上。一看到把孩子送来了，他很勉强的接受了。但是对卫青却非常的歧视，就只让他放羊，地位连家里的佣人都不如，所以卫青在郑家只是奴隶的身份。
+
+郑季的妻妾们生的孩子都欺负年幼的卫青，从没有一个人把他当自己的兄弟姐妹。可怜小小的卫青，离开了母亲已经够无助的了，亲生父亲对他又是如此的无情。
+
+在屈辱、孤寂、无助中长大的卫青，却学会了一样“本事”，那就是“忍耐”。他的这份忍耐的精神也给他以后的发展起到了至关重要的作用。
+
+在卫青稍长大点以后，他无法再忍受这样被亲生父亲当奴隶的生活，他又回到了母亲的身边。虽然生活依然是很穷苦，但是和母亲以及姐姐卫子夫在一起生活，让饱受折磨的卫青终于感受到温暖。
+
+\chapter{窘辱何须讶}
+
+卫青成年后，随母亲在驸马平阳侯曹寿家做了一名骑马随从，专门保护曹寿的妻子平阳公主。
+
+卫青的姐姐卫子夫则成了平阳侯家的歌妓，那卫子夫本就随母亲长的非常的漂亮，再加上当歌妓必须接受各种专业训练，使得卫子夫更加的出挑！
+
+汉武帝刘彻有一年去灞上扫墓归来，路过平阳侯家，平阳侯夫妇热情招待，献歌献舞。在这个献舞的过程中，刘彻就被婀娜多姿的卫子夫所吸引，于是当晚就宠幸了卫子夫。
+
+不久卫子夫即被汉武帝接进宫中，卫青也沾了姐姐的光被安排在建章宫当差。
+
+卫子夫被接进宫中后，就被刘彻忘到脑后了，坐了一年多的冷板凳。一年多以后，刘彻又忽然想起还有这么个美人在宫里呢，于是又开始宠幸卫子夫，不久卫子夫即怀孕了。
+
+刘彻的皇后，“金屋藏娇”的女主角---陈阿娇皇后，在得知卫子夫怀孕后，是又嫉妒又害怕，怕那卫子夫生下男婴影响自己的地位，因为陈阿娇一直未有生育孩子。
+
+于是陈皇后派人抓捕了卫青，想杀掉卫青，以此刺激卫子夫让其流产。
+
+卫青的好友公孙敖得知此消息，焦急万分，立刻召集部下劫了大牢，卫青这才保住了一条命。
+
+刘彻知道这件事后，非常的震怒，立刻升卫子夫做了“夫人”，又任命卫青为建章监、侍中。卫子夫也没有辜负皇上的期望，为刘彻生下了一位太子。
+
+卫青成为建章监以后，随侍在皇帝身边，深得皇帝信任，后又被升至太中大夫。
+
+秋风劲弓弝
+
+由于从小在父亲家当奴隶的人生经历，养成了卫青隐忍内敛的性格，不张不傲，做任何事都很有分寸，因而深得皇帝的喜爱。不久又升他为车骑将军，卫青的大将生涯从此开始。
+
+这一年匈奴来犯，彪悍的匈奴骑兵来势凶猛。刘彻即派卫青带领一支部队，外加另外的三只部队同时出发，四面夹击来攻破匈奴的侵略。
+
+但是其余三只部队均惨败而回，只有卫青带领的部队打了大胜仗！
+
+为何呢？因为卫青善于以战养战，用兵敢于深入，而且将号严明；对将士爱护有加，对同僚大度有礼；位极人臣而不立私威。任何事情都是严格的要求自己，以身作则。故而深得官兵们的爱戴，所有的官兵都自愿的为他“赴汤蹈火”！
+
+卫青的姐姐卫子夫生了儿子后，深得刘彻的宠爱，刘彻废掉陈阿娇的后位改立卫子夫做了皇后。
+
+在这时候，卫青又不断的驱逐匈奴为大汉立下奇功。并且俘虏了匈奴士兵数千人，还捕获了敌人100多万头牲畜，夺回了大片的土地！
+
+皇帝高兴万分，当即将夺回的土地全部赏赐给了卫青，并且封卫青为“长平侯”。
+
+“平阳公主”就是卫青当年在平阳侯家给当护卫随从的那位“公主”啦。在这一年，平阳公主失去了丈夫曹寿，她决定再嫁。
+
+于是很多人都建议平阳公主嫁给卫青，但是平阳公主嫌弃卫青奴隶出身，还做过自己的随从“辱没”了自己的公主身份。
+
+另外一部分人就劝说平阳公主，说卫青现在身份尊贵，而且人才出众，是最好的人选了。考虑再三的公主最后还是同意了。
+
+汉武帝也希望看到自己的姐姐生活幸福，于是下诏书命令卫青娶平阳公主为妻。
+
+一代名将卫青就这样当上了驸马，变成了汉武帝刘彻的“姐夫”。
+\newpage
+但是其余三只部队均惨败而回，只有卫青带领的部队打了大胜仗！
+
+为何呢？因为卫青善于以战养战，用兵敢于深入，而且将号严明；对将士爱护有加，对同僚大度有礼；位极人臣而不立私威。任何事情都是严格的要求自己，以身作则。故而深得官兵们的爱戴，所有的官兵都自愿的为他“赴汤蹈火”！
+
+卫青的姐姐卫子夫生了儿子后，深得刘彻的宠爱，刘彻废掉陈阿娇的后位改立卫子夫做了皇后。
+
+在这时候，卫青又不断的驱逐匈奴为大汉立下奇功。并且俘虏了匈奴士兵数千人，还捕获了敌人100多万头牲畜，夺回了大片的土地！
+
+皇帝高兴万分，当即将夺回的土地全部赏赐给了卫青，并且封卫青为“长平侯”。
+
+“平阳公主”就是卫青当年在平阳侯家给当护卫随从的那位“公主”啦。在这一年，平阳公主失去了丈夫曹寿，她决定再嫁。
+
+于是很多人都建议平阳公主嫁给卫青，但是平阳公主嫌弃卫青奴隶出身，还做过自己的随从“辱没”了自己的公主身份。
+
+另外一部分人就劝说平阳公主，说卫青现在身份尊贵，而且人才出众，是最好的人选了。考虑再三的公主最后还是同意了。
+
+汉武帝也希望看到自己的姐姐生活幸福，于是下诏书命令卫青娶平阳公主为妻。
+
+一代名将卫青就这样当上了驸马，变成了汉武帝刘彻的“姐夫”。
+\end{document}
